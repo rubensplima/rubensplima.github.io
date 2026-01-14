@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Rubens Lima - Desenvolvedor Web e Analista de Dados">
+    <title>Rubens Lima | Dev & Dados</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">
+                <img src="images/logo.png" alt="Rubens Lima Logo" style="height: 40px;">
+            </a>
+
+            <button class="mobile-menu-btn" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#about" class="nav-link">Sobre</a></li>
+                    <li><a href="#experience" class="nav-link">Experiência</a></li>
+                    <li><a href="#data-cases" class="nav-link">Dados</a></li>
+                    <li><a href="#web-projects" class="nav-link">Web</a></li>
+                    <li><a href="indicacoes.html" class="nav-link">Indicações</a></li>
+                    <li><a href="#contact" class="nav-link">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section (Redesigned) -->
+    <section id="hero" class="hero centered-hero">
+        <div class="container hero-container-center">
+            <h1 class="hero-name-large">RUBENS LIMA</h1>
+            <h2 class="hero-role">Analista de Dados & Desenvolvedor Web</h2>
+            <p class="hero-tagline-center">Transformando dados em <span class="highlight">decisões</span> e ideias em
+                <span class="highlight">interfaces</span>.
+            </p>
+
+            <div class="hero-buttons center-btns">
+                <a href="resourses/pdf/CV_José_Rubens_Pereira_Lima.pdf" target="_blank" class="btn btn-outline">Ver
+                    Currículo</a>
+                <a href="#contact" class="btn btn-primary">Solicitar Orçamento</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Services Section (Redesigned) -->
+    <section id="about" class="section about-services">
+        <div class="container about-grid-layout">
+            <!-- Left Column: Image (Sticky) -->
+            <div class="about-image-col">
+                <div class="image-frame">
+                    <img src="images/foto-perfil.png" alt="Rubens Lima" class="profile-photo">
+                </div>
+            </div>
+
+            <!-- Right Column: Content -->
+            <div class="about-content-col">
+                <h2 class="section-title-left">Sobre Mim</h2>
+                <p class="about-bio">
+                    Sou um desenvolvedor apaixonado por resolver problemas. Atuo na intersecção entre a lógica dos dados
+                    e a criatividade do front-end. Meu foco é entregar soluções que não apenas funcionam, mas que geram
+                    valor real para o negócio.
+                </p>
+
+                <h3 class="services-title">Competências Técnicas</h3>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h4>Análise & Modelagem</h4>
+                        <div class="tags">
+                            <span>Análise de Dados</span><span>Modelagem de Dados</span><span>Análise de
+                                Requisitos</span><span>UML</span><span>APF</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Ferramentas</h4>
+                        <div class="tags">
+                            <span>SQL Server</span><span>Power BI</span><span>Data
+                                Pipeline</span><span>ETL</span><span>IBM Cognos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section (New) -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experiência</h2>
+            <div class="timeline">
+                <!-- Exp 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - 2025</div>
+                    <div class="timeline-content">
+                        <h3>Engesoftware Tecnologia S.A</h3>
+                        <span class="role">Desenvolvedor ETL</span>
+                        <p>Desenvolvimento de processos ETL no SQL Server para gestão tributária, limpeza e organização
+                            de dados contábeis descentralizados, garantindo integridade e reduzindo riscos de multas
+                            fiscais.</p>
+                    </div>
+                </div>
+                <!-- Exp 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2020 - 2023</div>
+                    <div class="timeline-content">
+                        <h3>Wipro</h3>
+                        <span class="role">Analista de Sistemas</span>
+                        <p>Analista de Dados no Ambiente de Gestão Tributária do BN, responsável pela limpeza,
+                            organização de dados e geração de arquivos para pagamento de tributos.</p>
+                    </div>
+                </div>
+                <!-- Exp 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-date">2019 - 2020</div>
+                    <div class="timeline-content">
+                        <h3>IVIA</h3>
+                        <span class="role">Analista de Sistemas</span>
+                        <p>Atuação na área de Gestão Tributária (limpeza e organização de dados contábeis).</p>
+                    </div>
+                </div>
+                <!-- Timeline Ends -->
+            </div>
+
+            <!-- Education & Certifications (New) -->
+            <div class="education-grid">
+                <div class="edu-col">
+                    <h3 class="edu-title">Formação Acadêmica</h3>
+                    <ul class="edu-list">
+                        <li>
+                            <strong>Pós-graduação em Gestão de Segurança da Informação</strong>
+                            <span>Faculdades 7 de Setembro (2010 – 2012)</span>
+                        </li>
+                        <li>
+                            <strong>Bacharelado em Análise e Desenvolvimento de Sistemas</strong>
+                            <span>Faculdade Integrada do Ceará (2008 – 2010)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="edu-col">
+                    <h3 class="edu-title">Certificações</h3>
+                    <ul class="cert-list">
+                        <li><i class="fas fa-certificate"></i> Análise de Dados e BI (Gran Faculdade, 2025)</li>
+                        <li><i class="fas fa-certificate"></i> Fundamentos de Análise de Dados (LinkedIn, 2025)</li>
+                        <li><i class="fas fa-certificate"></i> Fundamentos de Data Science e IA (DSA, 2025)</li>
+                        <li><i class="fas fa-certificate"></i> Power BI (Danki Code, 2025)</li>
+                        <li><i class="fas fa-certificate"></i> APF - Análise de Pontos de Função (TOTVS, 2017)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Cases Section -->
+    <section id="data-cases" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Cases de Dados</h2>
+            <p class="section-subtitle">Problemas reais, soluções baseadas em dados</p>
+
+            <div class="projects-grid">
+                <!-- Case 1 -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <span class="badger">Automação Financeira</span>
+                        <h3>Atualização de Carteira B3</h3>
+                        <p class="problem"><strong>Problema:</strong> Dificuldade em acompanhar a rentabilidade
+                            consolidada de Ações e FIIs em tempo real.</p>
+                        <p class="solution"><strong>Solução:</strong> Pipeline Python que integra com API da B3,
+                            processa planilhas Excel e gera dashboards automáticos no Obsidian.</p>
+                        <!-- Link placeholder for future PDF/HTML -->
+                        <a href="resourses/dsa/" class="link-arrow" title="Em breve: documentação completa">Ver detalhes
+                            <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Case 2 -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <span class="badger">Data Analytics</span>
+                        <h3>Monitoramento de KPIs</h3>
+                        <p class="problem"><strong>Problema:</strong> Tomada de decisão lenta devido à dados
+                            descentralizados em múltiplos sistemas.</p>
+                        <p class="solution"><strong>Solução:</strong> Dashboard unificado consumindo dados via ETL
+                            (Extract, Transform, Load) para visualização clara de tendências.</p>
+                        <!-- Link placeholder for future PDF/HTML -->
+                        <a href="resourses/dsa/" class="link-arrow" title="Em breve: documentação completa">Ver detalhes
+                            <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web Projects Section -->
+    <section id="web-projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projetos Web</h2>
+            <p class="section-subtitle">Interfaces modernas e funcionais</p>
+
+            <div class="web-grid">
+                <!-- Web Project 1 -->
+                <div class="web-card">
+                    <div class="web-preview" style="background-color: #ddd; height: 180px;">
+                        <!-- Image placeholder -->
+                        <div class="placeholder-text">Preview do Site</div>
+                    </div>
+                    <div class="web-info">
+                        <h3>Site Institucional</h3>
+                        <p>Landing page de alta conversão para setor imobiliário.</p>
+                        <div class="tech-stack">
+                            <span>HTML</span><span>CSS</span><span>JS</span>
+                        </div>
+                        <a href="#" class="btn-sm">Visitar</a>
+                    </div>
+                </div>
+
+                <!-- Web Project 2 -->
+                <div class="web-card">
+                    <div class="web-preview" style="background-color: #ddd; height: 180px;">
+                        <!-- Image placeholder -->
+                        <div class="placeholder-text">Preview do Projeto</div>
+                    </div>
+                    <div class="web-info">
+                        <h3>Blog Pessoal</h3>
+                        <p>Sistema de blog otimizado para SEO e leitura.</p>
+                        <div class="tech-stack">
+                            <span>React</span><span>Next.js</span>
+                        </div>
+                        <a href="#" class="btn-sm">Visitar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-dark text-white">
+        <div class="container contact-container">
+            <div class="contact-header">
+                <h2 class="section-title text-white">Vamos conversar?</h2>
+                <p>Estou disponível para novos projetos e consultorias.</p>
+            </div>
+
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/rubensplima/" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/rubensplima" target="_blank" class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://rubensplima.com/" target="_blank" class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Blog</span>
+                </a>
+                <a href="mailto:contato@rubensplima.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rubens Lima. Todos os direitos reservados.</p>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
