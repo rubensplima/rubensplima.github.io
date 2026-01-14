@@ -3,7 +3,7 @@
 Bem-vindo ao repositório do meu portfólio profissional. Este projeto foi desenvolvido para apresentar minha trajetória como **Analista de Dados** e **Desenvolvedor Web**, destacando projetos, competências e experiências.
 
 🔗 **Acesse o site:** [rubensplima.github.io](https://rubensplima.github.io)
-*(Ou via domínio personalizado: [rubensplima.com](https://rubensplima.com))*
+*(Ou via domínio personalizado: [portfolio.rubensplima.com](https://portfolio.rubensplima.com))*
 
 ## 🛠️ Tecnologias Utilizadas
 - **HTML5 Semântico**: Estrutura acessível e otimizada para SEO.
