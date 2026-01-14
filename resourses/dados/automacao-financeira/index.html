@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automação Financeira | Rubens Lima</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="logo">
+                <img src="../../../images/logo.png" alt="Rubens Lima Logo" style="height: 40px;">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="../../../index.html#about" class="nav-link">Sobre</a></li>
+                    <li><a href="../../../index.html#data-cases" class="nav-link">Voltar para Cases</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Hero -->
+    <section class="section bg-light page-header">
+        <div class="container">
+            <span class="badger">Python + Obsidian</span>
+            <h1 class="section-title">Automação de Dashboard Financeiro</h1>
+            <p class="section-subtitle">Como usei Python para conectar a B3 ao meu "Segundo Cérebro"</p>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <section class="section">
+        <div class="container project-details-container">
+            <div class="project-content-cols">
+
+                <!-- Main Text -->
+                <div class="project-text">
+                    <h2>O Desafio</h2>
+                    <p>Gerenciar uma carteira de investimentos diversificada entre Ações e FIIs exige acompanhamento
+                        constante. O portal da B3 exporta dados em Excel, mas a visualização é estática e não oferece
+                        insights de rebalanceamento.</p>
+
+                    <h2>A Solução</h2>
+                    <p>Desenvolvi um pipeline ETL que:
+                    <ul>
+                        <li>1. Lê os arquivos Excel da B3 automaticamente.</li>
+                        <li>2. Conecta com a API do Yahoo Finance para pegar preços em tempo real.</li>
+                        <li>3. Calcula o "Delta" (diferença entre a meta e o atual) para cada ativo.</li>
+                        <li>4. Gera um dashboard em Markdown já formatado para o Obsidian.</li>
+                    </ul>
+                    </p>
+
+                    <h3>Tecnologias</h3>
+                    <div class="tags">
+                        <span>Python</span><span>Pandas</span><span>YFinance</span><span>ETL</span><span>Automação</span>
+                    </div>
+
+                    <div class="action-area"
+                        style="margin-top: 3rem; background: #f0f4f8; padding: 2rem; border-radius: 8px;">
+                        <h3>📂 Código Fonte</h3>
+                        <p>Acesse o Jupyter Notebook com a documentação completa e o código passo a passo.</p>
+                        <a href="finance_dashboard.ipynb" download class="btn btn-primary"><i
+                                class="fas fa-download"></i> Baixar Notebook (.ipynb)</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar / Details -->
+                <div class="project-sidebar">
+                    <div class="rec-card">
+                        <h3>Resultados</h3>
+                        <ul style="text-align: left; margin-top: 1rem; color: #666;">
+                            <li><i class="fas fa-check" style="color: green;"></i> Redução de 90% no tempo de análise.
+                            </li>
+                            <li><i class="fas fa-check" style="color: green;"></i> Rebalanceamento sem emoção.</li>
+                            <li><i class="fas fa-check" style="color: green;"></i> Totalmente offline-first.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="section bg-dark text-white">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Rubens Lima.</p>
+        </div>
+    </section>
+
+</body>
+
+</html>
