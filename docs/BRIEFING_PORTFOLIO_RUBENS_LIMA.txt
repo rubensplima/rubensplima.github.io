@@ -1,0 +1,77 @@
+BRIEFING MESTRE — PORTFÓLIO PROFISSIONAL RUBENS LIMA
+Versão: 1.0 | Data: 23/10/2026
+
+OBJETIVO
+Documentar decisões para continuar o ecossistema de portfólios sem rediscutir identidade, estrutura e padrões aprovados.
+
+REPOSITÓRIOS E ENDEREÇOS
+GitHub: https://github.com/rubensplima
+Repositório principal: rubensplima/rubensplima.github.io
+Portfólio: https://portfolio.rubensplima.com/
+Dashboard independente: rubensplima/architecture-investor-dashboard
+Demo: https://portfolio.rubensplima.com/architecture-investor-dashboard/
+Branch de desenvolvimento: dev/portfolio-redesign-2026
+
+ARQUITETURA
+Data Analytics é a especialidade principal, na raiz /.
+Copywriting terá página /copywriting/.
+Desenvolvimento Web e Soluções Digitais terá página /web/.
+Indicações terá página separada /indicacoes.html, acessível pelo menu das três áreas.
+Cada projeto deve ter documentação em repositório independente, e o portfólio exibirá cartões com resumos e links, sem gerar páginas de projeto automaticamente.
+Landing pages podem aparecer em Web e Copywriting com enfoques diferentes.
+
+IDENTIDADE VISUAL APROVADA
+Minimalismo editorial com sofisticação tecnológica, tipografia elegante, seções claras e escuras, cartões consistentes e responsividade.
+Preservar cores: ciano #0BB2D9, laranja #FFA62B, grafite #272727, cinza claro #F5F5F5, branco #FFFFFF e texto #1C1C1C.
+Usar logotipo existente (images/logo.png) em tamanho maior no cabeçalho, sem repetir o nome Rubens Lima em texto ao lado.
+Usar foto existente (images/foto-perfil.png) na apresentação inicial, junto ao nome e proposta de valor.
+Evitar animações excessivas, rodapés decorativos e botão flutuante de WhatsApp.
+
+PORTFÓLIO DE DADOS
+Hero com foto e apresentação; projetos destacados; competências; experiência; formação e certificações; contato.
+Foco em problemas resolvidos e valor gerado, não só ferramentas.
+Competências atuais: SQL Server, ETL, Power BI, análise e modelagem de dados.
+Preservar experiência: Engesoftware (2023–2025), Wipro (2020–2023), IVIA (2019–2020), além do currículo existente.
+Projetos identificados: dashboard para investidores de arquitetura e automação financeira/carteira B3. Conferir links e conteúdo antes da publicação.
+Propostas de valor discutidas: “Dados mais claros. Decisões melhores.” e “Transformo dados dispersos em informações que apoiam decisões”.
+
+COPYWRITING
+Página própria com a identidade visual compartilhada. Destacar textos, estratégias de conteúdo, campanhas, páginas de vendas e resultados verificáveis. Projetos e métricas específicos serão definidos futuramente.
+
+DESENVOLVIMENTO WEB E SOLUÇÕES DIGITAIS
+Página própria com a identidade compartilhada. Inicialmente sites e landing pages, podendo expandir para aplicativos e SaaS. Apresentar problema, solução, stack, repositório e demonstração.
+
+INDICAÇÕES
+Página independente, não exibir cartões de recomendações na home.
+Categorias possíveis: hospedagem, livros, ferramentas e serviços.
+Cartões com nome, descrição, categoria, imagem e link. Identificar claramente links de afiliados.
+
+AUTOMAÇÃO DE CONTEÚDO — PLANEJADA
+Google Sheets como CMS leve, com abas Projetos e Indicações.
+Campos sugeridos: ID, título, descrição, categoria(s), imagem, URL, publicado, destaque, ordem, especialidade e tecnologia.
+Objetivo: alterar planilha para atualizar cartões sem editar HTML nem realizar novo deploy.
+A integração ainda precisa ser construída e testada. Criar feed JSON público seguro, tratar CORS, cache, URLs, estados vazios e sanitização. Não expor dados privados ou credenciais.
+
+CONTATO
+E-mail: contato@rubensplima.com
+WhatsApp informado: +55 85 99629-2934
+Link: https://wa.me/5585996292934
+Botões: “Conversar pelo WhatsApp” e “Enviar e-mail”.
+Migração opcional do número para WhatsApp Business e mensagem automática; não é requisito para o link funcionar.
+
+FLUXO DE TRABALHO
+Trabalhar na branch dev/portfolio-redesign-2026 ou em prévia isolada.
+Não alterar a branch main, o site publicado, o domínio personalizado ou o dashboard independente antes de revisão e aprovação.
+Validar links, imagens, responsividade, acessibilidade, SEO, contatos e atualização de conteúdo.
+Atualizar README e documentação a cada fase.
+
+STATUS EM 23/10/2026
+Primeira versão visual aprovada. Protótipos HTML criados, com Indicações em página separada.
+Branch de desenvolvimento criada. README atualizado nessa branch.
+Implementação final, integração com Google Sheets e páginas de Copywriting e Web ainda pendentes.
+Aprovação visual não equivale a autorização de publicação.
+
+INSTRUÇÃO PARA RETOMAR NO FUTURO
+“Use este briefing como referência do ecossistema de portfólios de Rubens Lima. Preserve identidade, arquitetura, página de indicações e proteção da produção. Confira o estado atual do GitHub e pergunte apenas por decisões ainda abertas.”
+
+FIM.
