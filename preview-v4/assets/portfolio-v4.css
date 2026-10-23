@@ -11,3 +11,11 @@
 .nav{min-height:94px}
 @media(max-width:760px){.brand img{height:48px;max-width:155px}.navlinks{gap:10px;font-size:11px}.navlinks a:nth-child(3){display:none}}
 @media(max-width:440px){.wrap{padding-left:16px;padding-right:16px}.navlinks a:nth-child(1){display:none}.brand img{max-width:135px}}
+
+/* Navegação V4: manter todos os destinos acessíveis em telas menores */
+.navlinks{gap:clamp(9px,1.65vw,24px);flex-wrap:wrap;justify-content:flex-end}
+.navlinks a{white-space:nowrap}
+@media(max-width:760px){.navlinks a:nth-child(2),.navlinks a:nth-child(3){display:inline}}
+@media(max-width:440px){.navlinks a:nth-child(1){display:inline}}
+@media(max-width:760px){.nav{height:auto;padding-top:12px;padding-bottom:12px;align-items:center;gap:12px}.navlinks{gap:9px 13px;justify-content:center}}
+@media(max-width:560px){.nav{flex-direction:column}.navlinks{width:100%;justify-content:center}.brand img{height:48px}}
