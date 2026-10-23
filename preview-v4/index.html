@@ -26,7 +26,7 @@
   const validUrl = s => { try { const u = new URL(s); return /^https?:$/.test(u.protocol) ? u.href : ''; } catch { return ''; } };
   const node = (tag, className, txt) => { const el=document.createElement(tag); if(className) el.className=className; if(txt) el.textContent=txt; return el; };
   async function loadSheet(name) {
-    const url='https://docs.google.com/spreadsheets/d/'+sheetId+'/gviz/tq?sheet='+encodeURIComponent(name)+'&tqx=out:json';
+    const url='https://docs.google.com/spreadsheets/d/'+sheetId+'/gviz/tq?sheet='+encodeURIComponent(name)+'&headers=0&tqx=out:json';
     const response=await fetch(url,{cache:'no-store'});
     if(!response.ok) throw Error('HTTP '+response.status);
     const raw=await response.text();
@@ -39,7 +39,7 @@
     const headerRow=(data.table.rows||[])[0]?.c?.map(c=>normalize(c?.v||''))||[];
     const headerInRows=expected.filter(k=>headerRow.includes(k)).length>=4;
     const recognized=cols.filter(c=>expected.includes(c)).length;
-    const headers=headerInRows?headerRow:cols.map((c,i)=>recognized>=4?c:(expected[i]||c||'col_'+i));
+    const headers=headerInRows?headerRow:cols.map((c,i)=>recognized>=4?c:(name==='Indicações'?(expected[i]||c||'col_'+i):(c||'col_'+i)));
     return (headerInRows?(data.table.rows||[]).slice(1):(data.table.rows||[])).map(r=>Object.fromEntries(headers.map((c,i)=>[c,r.c?.[i]?.v ?? ''])));
   }
   function picture(url,title) {
@@ -62,7 +62,7 @@
     if(desc) body.append(node('p','',desc));
     const tags=value(row,'etiquetas','tecnologias','tags','ferramentas','tech');
     if(tags){ const t=node('div','tech'); tags.split(/[,;|]/).map(s=>s.trim()).filter(Boolean).forEach(s=>t.append(node('span','',s)));body.append(t); }
-    const href=validUrl(value(row,indication?'link_url':'projeto_url','link_afiliado','url','link','link_url','destino_url','site_url'));
+    const href=validUrl(value(row,indication?'link_url':'projeto_url','link_afiliado','url','link','link_url','projeto_link','url_projeto','demo_url','repositorio_url','github_url','destino_url','site_url'));
     if(href){const a=node('a','cardlink',indication?'Ver indicação ↗':'Ver projeto ↗');a.href=href;a.target='_blank';a.rel='noopener noreferrer sponsored';body.append(a);}
     card.append(body);if(href){card.style.cursor='pointer';card.tabIndex=0;card.setAttribute('role','link');card.setAttribute('aria-label','Abrir '+title);card.addEventListener('click',e=>{if(!e.target.closest('a'))window.open(href,'_blank','noopener,noreferrer')});card.addEventListener('keydown',e=>{if(e.target===card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();window.open(href,'_blank','noopener,noreferrer')}});}return card;
   }
@@ -71,16 +71,17 @@
     
     const status=node('p','micro','Carregando registros da planilha…');grid.replaceChildren(status);
     try{
-      const rows=(await loadSheet(name)).filter(r=>published(r)&&(!area||normalize(value(r,'area'))===area));
+      const rows=(await loadSheet(name)).filter(r=>published(r)&&(!area||!value(r,'area')||normalize(value(r,'area'))===area));
       const cards=rows.map(r=>card(r,indication)).filter(Boolean);
       if(cards.length) grid.replaceChildren(...cards);
       else grid.replaceChildren(node('p','micro','Nenhum registro publicado nesta seção.'));
     }catch(e){
       console.warn('Portfolio V4: erro ao ler '+name,e);
-      grid.replaceChildren(node('p','micro','Não foi possível carregar as indicações. Verifique se a aba da planilha está pública e tente novamente.'));
+      grid.innerHTML=original;
     }
   }
   if(document.querySelector('#indicacoes-grid')) render('Indicações','#indicacoes-grid',null,true);
   else if(document.querySelector('#projetos')) render('Projetos','#projetos .grid','dados');
 })();
+document.querySelectorAll('#projetos .card').forEach(card=>{const a=card.querySelector('a.cardlink[href]');if(!a)return;card.style.cursor='pointer';card.tabIndex=0;card.setAttribute('role','link');card.addEventListener('click',e=>{if(!e.target.closest('a'))a.click()});card.addEventListener('keydown',e=>{if(e.target===card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();a.click()}})});
 </script></body></html>
