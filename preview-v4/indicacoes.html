@@ -48,8 +48,12 @@
     if(!match) throw Error('A aba não retornou dados públicos');
     const data=JSON.parse(match[1]);
     if(data.status==='error') throw Error(data.errors?.[0]?.message || 'Erro de consulta');
-    const cols=data.table.cols.map((c,i)=>normalize(c.label||c.id||('col_'+i)));
-    return (data.table.rows||[]).map(r=>Object.fromEntries(cols.map((c,i)=>[c,r.c?.[i]?.v ?? ''])));
+    const expected=['id','titulo','descricao','categoria','imagem_url','link_url','etiquetas','publicado','destaque','ordem','aviso_afiliado'];
+    const cols=data.table.cols.map((c,i)=>normalize(c.label||c.id||''));
+    const headerRow=(data.table.rows||[])[0]?.c?.map(c=>normalize(c?.v||''))||[];
+    const headerInRows=expected.filter(k=>headerRow.includes(k)).length>=4;
+    const headers=headerInRows?headerRow:cols.map((c,i)=>expected.includes(c)?c:(expected[i]||c||'col_'+i));
+    return (headerInRows?(data.table.rows||[]).slice(1):(data.table.rows||[])).map(r=>Object.fromEntries(headers.map((c,i)=>[c,r.c?.[i]?.v ?? ''])));
   }
   function picture(url,title) {
     const box=node('div','preview one');
@@ -69,15 +73,15 @@
     body.append(node('h3','',title));
     const desc=value(row,'descricao','resumo','description','texto');
     if(desc) body.append(node('p','',desc));
-    const tags=value(row,'tecnologias','tags','ferramentas','tech');
+    const tags=value(row,'etiquetas','tecnologias','tags','ferramentas','tech');
     if(tags){ const t=node('div','tech'); tags.split(/[,;|]/).map(s=>s.trim()).filter(Boolean).forEach(s=>t.append(node('span','',s)));body.append(t); }
     const href=validUrl(value(row,indication?'link_afiliado':'projeto_url','url','link','link_url','destino_url','site_url'));
     if(href){const a=node('a','cardlink',indication?'Ver indicação ↗':'Ver projeto ↗');a.href=href;a.target='_blank';a.rel='noopener noreferrer sponsored';body.append(a);}
-    card.append(body);return card;
+    card.append(body);if(href){card.style.cursor='pointer';card.tabIndex=0;card.setAttribute('role','link');card.setAttribute('aria-label','Abrir '+title);card.addEventListener('click',e=>{if(!e.target.closest('a'))window.open(href,'_blank','noopener,noreferrer')});card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();window.open(href,'_blank','noopener,noreferrer')}});}return card;
   }
   async function render(name,selector,area,indication=false){
     const grid=document.querySelector(selector); if(!grid) return;
-    const original=grid.innerHTML;
+    
     const status=node('p','micro','Carregando registros da planilha…');grid.replaceChildren(status);
     try{
       const rows=(await loadSheet(name)).filter(r=>published(r)&&(!area||normalize(value(r,'area'))===area));
@@ -86,9 +90,7 @@
       else grid.replaceChildren(node('p','micro','Nenhum registro publicado nesta seção.'));
     }catch(e){
       console.warn('Portfolio V4: erro ao ler '+name,e);
-      grid.innerHTML=original;
-      const msg=node('p','micro','Não foi possível atualizar os registros da planilha. Exibindo conteúdo de demonstração.');
-      grid.after(msg);
+      grid.replaceChildren(node('p','micro','Não foi possível carregar as indicações. Verifique se a aba da planilha está pública e tente novamente.'));
     }
   }
   if(document.querySelector('#indicacoes-grid')) render('Indicações','#indicacoes-grid',null,true);
