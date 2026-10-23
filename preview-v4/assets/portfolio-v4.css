@@ -19,3 +19,10 @@
 @media(max-width:440px){.navlinks a:nth-child(1){display:inline}}
 @media(max-width:760px){.nav{height:auto;padding-top:12px;padding-bottom:12px;align-items:center;gap:12px}.navlinks{gap:9px 13px;justify-content:center}}
 @media(max-width:560px){.nav{flex-direction:column}.navlinks{width:100%;justify-content:center}.brand img{height:48px}}
+
+/* Seletor de especialidades separado do menu de seções */
+.portfolio-switcher{display:flex;align-items:center;justify-content:center;gap:10px 22px;flex-wrap:wrap;padding:11px 18px;background:#edf4f6;border-bottom:1px solid #dce7eb;font-size:12px;font-weight:700}
+.portfolio-switcher span{color:#64757b;font-weight:600}
+.portfolio-switcher a{color:#087d99;text-decoration:none}
+.portfolio-switcher a:hover{text-decoration:underline}
+@media(max-width:560px){.portfolio-switcher{gap:8px 14px;font-size:11px}}
