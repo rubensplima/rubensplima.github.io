@@ -30,4 +30,68 @@
 </div>
 <p class="micro">Protótipo: a integração automática com Google Sheets será implementada após aprovação do visual.</p>
 </div>
-</section></main><footer class="footer"><div class="wrap"><span>© 2026 Rubens Lima · Protótipo visual</span><span>Paleta original preservada · HTML, CSS e JavaScript</span></div></footer></body></html>
+</section></main><footer class="footer"><div class="wrap"><span>© 2026 Rubens Lima · Protótipo visual</span><span>Paleta original preservada · HTML, CSS e JavaScript</span></div></footer><script>
+/* Portfolio V4: Google Sheets público (somente leitura). */
+(() => {
+  const sheetId = '15fs44Pce3gsBfJLpLqtYMqrY0tv-VsVn4oTSDQ2nTTU';
+  const normalize = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/[\s-]+/g,'_');
+  const value = (row, ...keys) => { for (const key of keys) { const v = row[normalize(key)]; if (v !== undefined && String(v).trim()) return String(v).trim(); } return ''; };
+  const published = row => /^(sim|s|yes|true|1|publicado|published|ativo|active)$/i.test(value(row,'publicado','publicar','status','visivel','ativo','published'));
+  const validUrl = s => { try { const u = new URL(s); return /^https?:$/.test(u.protocol) ? u.href : ''; } catch { return ''; } };
+  const node = (tag, className, txt) => { const el=document.createElement(tag); if(className) el.className=className; if(txt) el.textContent=txt; return el; };
+  async function loadSheet(name) {
+    const url='https://docs.google.com/spreadsheets/d/'+sheetId+'/gviz/tq?sheet='+encodeURIComponent(name)+'&tqx=out:json';
+    const response=await fetch(url,{cache:'no-store'});
+    if(!response.ok) throw Error('HTTP '+response.status);
+    const raw=await response.text();
+    const match=raw.match(/google\.visualization\.Query\.setResponse\((\{[\s\S]*\})\);?/);
+    if(!match) throw Error('A aba não retornou dados públicos');
+    const data=JSON.parse(match[1]);
+    if(data.status==='error') throw Error(data.errors?.[0]?.message || 'Erro de consulta');
+    const cols=data.table.cols.map((c,i)=>normalize(c.label||c.id||('col_'+i)));
+    return (data.table.rows||[]).map(r=>Object.fromEntries(cols.map((c,i)=>[c,r.c?.[i]?.v ?? ''])));
+  }
+  function picture(url,title) {
+    const box=node('div','preview one');
+    const src=validUrl(url);
+    if(src) { const img=node('img'); img.src=src; img.alt='Imagem do projeto: '+title; img.loading='lazy'; img.style.cssText='width:100%;height:100%;object-fit:cover;position:relative;z-index:1'; img.onerror=()=>img.remove(); box.append(img); }
+    return box;
+  }
+  function card(row,indication=false) {
+    const title=value(row,'titulo','nome','projeto','produto','title');
+    if(!title) return null;
+    const card=node('article','card');
+    const img=value(row,'imagem_url','url_imagem','imagem','image_url');
+    if(!indication || img) card.append(picture(img,title));
+    const body=node('div','cardbody');
+    const label=value(row,'categoria','tipo','tag','area','category');
+    if(label) body.append(node('span','tag',label));
+    body.append(node('h3','',title));
+    const desc=value(row,'descricao','resumo','description','texto');
+    if(desc) body.append(node('p','',desc));
+    const tags=value(row,'tecnologias','tags','ferramentas','tech');
+    if(tags){ const t=node('div','tech'); tags.split(/[,;|]/).map(s=>s.trim()).filter(Boolean).forEach(s=>t.append(node('span','',s)));body.append(t); }
+    const href=validUrl(value(row,indication?'link_afiliado':'projeto_url','url','link','link_url','destino_url','site_url'));
+    if(href){const a=node('a','cardlink',indication?'Ver indicação ↗':'Ver projeto ↗');a.href=href;a.target='_blank';a.rel='noopener noreferrer sponsored';body.append(a);}
+    card.append(body);return card;
+  }
+  async function render(name,selector,area,indication=false){
+    const grid=document.querySelector(selector); if(!grid) return;
+    const original=grid.innerHTML;
+    const status=node('p','micro','Carregando registros da planilha…');grid.replaceChildren(status);
+    try{
+      const rows=(await loadSheet(name)).filter(r=>published(r)&&(!area||normalize(value(r,'area'))===area));
+      const cards=rows.map(r=>card(r,indication)).filter(Boolean);
+      if(cards.length) grid.replaceChildren(...cards);
+      else grid.replaceChildren(node('p','micro','Nenhum registro publicado nesta seção.'));
+    }catch(e){
+      console.warn('Portfolio V4: erro ao ler '+name,e);
+      grid.innerHTML=original;
+      const msg=node('p','micro','Não foi possível atualizar os registros da planilha. Exibindo conteúdo de demonstração.');
+      grid.after(msg);
+    }
+  }
+  if(document.querySelector('#indicacoes-grid')) render('Indicações','#indicacoes-grid',null,true);
+  else if(document.querySelector('#projetos')) render('Projetos','#projetos .grid','dados');
+})();
+</script></body></html>
