@@ -4,6 +4,14 @@ Portfólio profissional com três áreas de atuação: **Dados**, **Copywriting*
 
 **Site oficial:** https://portfolio.rubensplima.com/
 
+## Acesso às páginas do portfólio
+
+- **[Dados — página inicial](https://portfolio.rubensplima.com/)** — análise de dados, ETL, BI e automação.
+- **[Copywriting](https://portfolio.rubensplima.com/copywriting-projetos/)** — projetos de escrita persuasiva e conteúdo.
+- **[Desenvolvimento Web](https://portfolio.rubensplima.com/web-projetos/)** — sites, landing pages e aplicações web.
+- **[Todos os Projetos](https://portfolio.rubensplima.com/todos-projetos/)** — visão geral e filtros por área.
+- **[Indicações](https://portfolio.rubensplima.com/indicacoes.html)** — página única de ferramentas e recomendações.
+
 ## Estrutura
 
 - `index.html` — Dados (página inicial)
