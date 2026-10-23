@@ -7,7 +7,15 @@
   const published = row => /^(sim|s|yes|true|1|publicado|published|ativo|active)$/i.test(value(row,'publicado','publicar','status','visivel','ativo','published'));
   const validUrl = s => { try { const u = new URL(s); return /^https?:$/.test(u.protocol) ? u.href : ''; } catch { return ''; } };
   const node = (tag, className, txt) => { const el=document.createElement(tag); if(className) el.className=className; if(txt) el.textContent=txt; return el; };
+  const sheetCache = new Map();
+  const requestVersions = new Map();
   async function loadSheet(name) {
+    if (sheetCache.has(name)) return sheetCache.get(name);
+    const pending = fetchSheet(name);
+    sheetCache.set(name, pending);
+    try { return await pending; } catch (error) { sheetCache.delete(name); throw error; }
+  }
+  async function fetchSheet(name) {
     const gid = name === 'Indicações' ? '2137525104' : name === 'Projetos' ? '1189701836' : null;
     const url='https://docs.google.com/spreadsheets/d/'+sheetId+'/gviz/tq?'+(gid?'gid='+gid:'sheet='+encodeURIComponent(name))+'&headers=0&tqx=out:json';
     const response=await fetch(url,{cache:'no-store'});
@@ -21,7 +29,6 @@
     const cols=data.table.cols.map((c,i)=>normalize(c.label||c.id||''));
     const headerRow=(data.table.rows||[])[0]?.c?.map(c=>normalize(c?.v||''))||[];
     const headerInRows=expected.filter(k=>headerRow.includes(k)).length>=3;
-    const recognized=cols.filter(c=>expected.includes(c)).length;
     const headers=headerInRows?headerRow:cols.map((c,i)=>c || 'col_'+i);
     return (headerInRows?(data.table.rows||[]).slice(1):(data.table.rows||[])).map(r=>Object.fromEntries(headers.map((c,i)=>[c,r.c?.[i]?.v ?? ''])));
   }
@@ -52,14 +59,18 @@
   async function render(name,selector,area,indication=false){
     const grid=document.querySelector(selector); if(!grid) return;
     
+    const version=(requestVersions.get(selector)||0)+1;
+    requestVersions.set(selector,version);
     const status=node('p','micro','Carregando registros da planilha…');grid.replaceChildren(status);
     try{
       const rows=(await loadSheet(name)).filter(r=>published(r)&&(!area||normalize(value(r,'area'))===area)).sort((a,b)=>(Number(value(a,'ordem'))||9999)-(Number(value(b,'ordem'))||9999));
+      if(requestVersions.get(selector)!==version) return;
       const cards=rows.map(r=>card(r,indication)).filter(Boolean);
       if(cards.length) grid.replaceChildren(...cards);
       else grid.replaceChildren(node('p','micro','Nenhum registro publicado nesta seção.'));
     }catch(e){
       console.warn('Portfolio V4: erro ao ler '+name,e);
+      if(requestVersions.get(selector)!==version) return;
       grid.replaceChildren(node('p','micro','Não foi possível carregar os registros agora.'));
     }
   }
