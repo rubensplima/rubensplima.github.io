@@ -17,12 +17,12 @@
     if(!match) throw Error('A aba não retornou dados públicos');
     const data=JSON.parse(match[1]);
     if(data.status==='error') throw Error(data.errors?.[0]?.message || 'Erro de consulta');
-    const expected=['id','titulo','descricao','categoria','imagem_url','link_url','etiquetas','publicado','destaque','ordem','aviso_afiliado'];
+    const expected=['id','titulo','descricao','categoria','imagem_url','link_url','etiquetas','publicado','destaque','ordem','aviso_afiliado','area'];
     const cols=data.table.cols.map((c,i)=>normalize(c.label||c.id||''));
     const headerRow=(data.table.rows||[])[0]?.c?.map(c=>normalize(c?.v||''))||[];
-    const headerInRows=expected.filter(k=>headerRow.includes(k)).length>=4;
+    const headerInRows=expected.filter(k=>headerRow.includes(k)).length>=3;
     const recognized=cols.filter(c=>expected.includes(c)).length;
-    const headers=headerInRows?headerRow:cols.map((c,i)=>recognized>=4?c:(name==='Indicações'?(expected[i]||c||'col_'+i):(c||'col_'+i)));
+    const headers=headerInRows?headerRow:cols.map((c,i)=>c || 'col_'+i);
     return (headerInRows?(data.table.rows||[]).slice(1):(data.table.rows||[])).map(r=>Object.fromEntries(headers.map((c,i)=>[c,r.c?.[i]?.v ?? ''])));
   }
   function picture(url,title) {
@@ -45,8 +45,8 @@
     if(desc) body.append(node('p','',desc));
     const tags=value(row,'etiquetas','tecnologias','tags','ferramentas','tech');
     if(tags){ const t=node('div','tech'); tags.split(/[,;|]/).map(s=>s.trim()).filter(Boolean).forEach(s=>t.append(node('span','',s)));body.append(t); }
-    const href=validUrl(value(row,indication?'link_url':'projeto_url','link_afiliado','url','link','link_url','projeto_link','url_projeto','demo_url','repositorio_url','github_url','destino_url','site_url'));
-    if(href){const a=node('a','cardlink',indication?'Ver indicação ↗':'Ver projeto ↗');a.href=href;a.target='_blank';a.rel='noopener noreferrer sponsored';body.append(a);}
+    const href=validUrl(value(row,'link_url','projeto_url','link_afiliado','url','link','projeto_link','url_projeto','demo_url','repositorio_url','github_url','destino_url','site_url'));
+    if(href){const a=node('a','cardlink',indication?'Ver indicação ↗':'Ver projeto ↗');a.href=href;a.target='_blank';a.rel=indication?'noopener noreferrer sponsored':'noopener noreferrer';body.append(a);}
     card.append(body);if(href){card.style.cursor='pointer';card.tabIndex=0;card.setAttribute('role','link');card.setAttribute('aria-label','Abrir '+title);card.addEventListener('click',e=>{if(!e.target.closest('a'))window.open(href,'_blank','noopener,noreferrer')});card.addEventListener('keydown',e=>{if(e.target===card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();window.open(href,'_blank','noopener,noreferrer')}});}return card;
   }
   async function render(name,selector,area,indication=false){
@@ -54,7 +54,7 @@
     
     const status=node('p','micro','Carregando registros da planilha…');grid.replaceChildren(status);
     try{
-      const rows=(await loadSheet(name)).filter(r=>published(r)&&(!area||normalize(value(r,'area'))===area));
+      const rows=(await loadSheet(name)).filter(r=>published(r)&&(!area||normalize(value(r,'area'))===area)).sort((a,b)=>(Number(value(a,'ordem'))||9999)-(Number(value(b,'ordem'))||9999));
       const cards=rows.map(r=>card(r,indication)).filter(Boolean);
       if(cards.length) grid.replaceChildren(...cards);
       else grid.replaceChildren(node('p','micro','Nenhum registro publicado nesta seção.'));
@@ -66,6 +66,7 @@
   if(document.querySelector('#indicacoes-grid')) render('Indicações','#indicacoes-grid',null,true);
   const pageArea=document.body.dataset.portfolioArea || 'dados';
   if(document.querySelector('#projetos')) render('Projetos','#projetos .grid',pageArea==='todos'?null:pageArea);
+  document.querySelector('#filtros button[data-area="todos"]')?.setAttribute('aria-pressed','true');
   document.querySelectorAll('#filtros button').forEach(b=>b.addEventListener('click',()=>{
     const selected=b.dataset.area;
     document.querySelectorAll('#filtros button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
