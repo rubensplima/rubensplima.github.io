@@ -47,6 +47,8 @@
     const title=value(row,'titulo','nome','projeto','produto','title');
     if(!title) return null;
     const card=node('article','card');
+    const href=validUrl(value(row,indication?'link_afiliado':'projeto_url','url','link','link_url','destino_url','site_url'));
+    if(href){card.style.cursor='pointer';card.setAttribute('role','link');card.tabIndex=0;card.setAttribute('aria-label','Abrir '+title);card.addEventListener('click',e=>{if(!e.target.closest('a'))window.open(href,'_blank','noopener,noreferrer')});card.addEventListener('keydown',e=>{if(e.target===card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();window.open(href,'_blank','noopener,noreferrer')}});}
     const img=value(row,'imagem_url','url_imagem','imagem','image_url');
     if(!indication || img) card.append(picture(img,title));
     const body=node('div','cardbody');
@@ -57,7 +59,6 @@
     if(desc) body.append(node('p','',desc));
     const tags=value(row,'tecnologias','tags','ferramentas','tech');
     if(tags){ const t=node('div','tech'); tags.split(/[,;|]/).map(s=>s.trim()).filter(Boolean).forEach(s=>t.append(node('span','',s)));body.append(t); }
-    const href=validUrl(value(row,indication?'link_afiliado':'projeto_url','url','link','link_url','destino_url','site_url'));
     if(href){const a=node('a','cardlink',indication?'Ver indicação ↗':'Ver projeto ↗');a.href=href;a.target='_blank';a.rel='noopener noreferrer sponsored';body.append(a);}
     card.append(body);return card;
   }
