@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
-<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Portfólio profissional de Rubens Lima: dados, copywriting e desenvolvimento web" name="description"/><title>Indicações | Rubens Lima</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link rel="stylesheet" href="assets/portfolio-v4.css"/></head><body data-portfolio-area="indicacoes"><header class="top"><div class="wrap nav"><a class="brand" href="index.html#inicio"><img alt="Logotipo de Rubens Lima" onerror="this.style.display='none'" src="https://raw.githubusercontent.com/rubensplima/rubensplima.github.io/main/images/logo.png"/></a><nav aria-label="Navegação principal" class="navlinks"><a href="index.html#projetos">Projetos</a><a href="index.html#competencias">Competências</a><a href="index.html#sobre">Sobre</a><a href="#indicacoes" aria-current="page">Indicações</a><a class="pill" href="index.html#contato">Contato ↗</a></nav></div></header><main><section class="section projects" id="indicacoes" style="padding-top:90px;min-height:65vh">
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Portfólio profissional de Rubens Lima: dados, copywriting e desenvolvimento web" name="description"/><title>Indicações | Rubens Lima</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link rel="stylesheet" href="assets/portfolio-v4.css"/></head><body data-portfolio-area="indicacoes"><header class="top"><div class="wrap nav"><a class="brand" id="voltar-logo" href="index.html#inicio"><img alt="Logotipo de Rubens Lima" onerror="this.style.display='none'" src="https://raw.githubusercontent.com/rubensplima/rubensplima.github.io/main/images/logo.png"/></a><nav aria-label="Navegação principal" class="navlinks"><a href="index.html#projetos">Projetos</a><a href="index.html#competencias">Competências</a><a href="index.html#sobre">Sobre</a><a href="#indicacoes" aria-current="page">Indicações</a><a class="pill" href="index.html#contato">Contato ↗</a></nav></div></header><main><section class="section projects" id="indicacoes" style="padding-top:90px;min-height:65vh">
 <div class="wrap">
+<p class="micro"><a id="voltar-origem" href="index.html">← Voltar para Dados</a></p>
 <div class="sectionhead">
 <div><div class="kicker">Recomendações selecionadas</div>
 <h2>Indicações úteis para seus projetos.</h2></div>
@@ -17,4 +18,23 @@
 </div>
 <p class="micro">Indicações atualizadas pela planilha de recomendações.</p>
 </div>
-</section></main><footer class="footer"><div class="wrap"><span>© 2026 Rubens Lima</span><span>Paleta original preservada · HTML, CSS e JavaScript</span></div></footer><script defer src="assets/portfolio-v4.js"></script></body></html>
+</section></main><footer class="footer"><div class="wrap"><span>© 2026 Rubens Lima</span><span>Paleta original preservada · HTML, CSS e JavaScript</span></div></footer><script>
+(function () {
+  const origem = new URLSearchParams(window.location.search).get('origem');
+  const destinos = {
+    dados: { url: 'index.html', nome: 'Dados' },
+    copywriting: { url: 'copywriting-projetos/', nome: 'Copywriting' },
+    web: { url: 'web-projetos/', nome: 'Desenvolvimento Web' },
+    todos: { url: 'todos-projetos/', nome: 'Todos os Projetos' }
+  };
+  const destino = Object.prototype.hasOwnProperty.call(destinos, origem) ? destinos[origem] : destinos.dados;
+  document.getElementById('voltar-logo').href = destino.url + '#inicio';
+  const voltar = document.getElementById('voltar-origem');
+  voltar.href = destino.url;
+  voltar.textContent = '← Voltar para ' + destino.nome;
+  for (const secao of ['projetos', 'competencias', 'sobre', 'contato']) {
+    const link = document.querySelector('nav a[href="index.html#' + secao + '"]');
+    if (link) link.href = destino.url + '#' + secao;
+  }
+})();
+</script><script defer src="assets/portfolio-v4.js"></script></body></html>
