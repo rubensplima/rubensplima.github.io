@@ -1,49 +1,51 @@
-# Portfólio Profissional - Rubens Lima
+# Portfólio profissional — Rubens Lima (V4)
 
-Bem-vindo ao repositório do meu portfólio profissional. Este projeto foi desenvolvido para apresentar minha trajetória como **Analista de Dados** e **Desenvolvedor Web**, destacando projetos, competências e experiências.
+Portfólio profissional com três áreas de atuação: **Dados**, **Copywriting** e **Desenvolvimento Web**. O projeto reúne trabalhos e indicações em páginas independentes, com visual responsivo e identidade visual própria.
 
-🔗 **Acesse o site:** [rubensplima.github.io](https://rubensplima.github.io)
-*(Ou via domínio personalizado: [portfolio.rubensplima.com](https://portfolio.rubensplima.com))*
+**Site oficial:** https://portfolio.rubensplima.com/
 
-## 🛠️ Tecnologias Utilizadas
-- **HTML5 Semântico**: Estrutura acessível e otimizada para SEO.
-- **CSS3 Moderno**: Variáveis CSS, Flexbox, Grid Layout e Design Responsivo (Mobile-First).
-- **JavaScript (Vanilla)**: Manipulação de DOM para menu mobile e smooth scroll.
-- **Font Awesome**: Ícones vetoriais.
-- **Google Fonts**: Tipografia moderna (Outfit).
+## Estrutura
 
-## 📂 Estrutura do Projeto
-```
-/
-├── index.html        # Página Principal (Home, Sobre, Experiência, Projetos)
-├── indicacoes.html   # Página de Recomendações e Ferramentas
-├── style.css         # Folha de estilos global
-├── main.js           # Scripts de interatividade
-├── images/           # Assets (Logo, Favicon, Imagens)
-└── resourses/        # PDFs e Arquivos de projetos (DSA)
-```
+- `index.html` — Dados (página inicial)
+- `copywriting-projetos/index.html` — Copywriting
+- `web-projetos/index.html` — Desenvolvimento Web
+- `todos-projetos/index.html` — projetos das três áreas, com filtros
+- `indicacoes.html` — página **única** de indicações, compartilhada pelas áreas
+- `assets/portfolio-v4.css` — estilos compartilhados
+- `assets/portfolio-v4.js` — integração de dados e renderização dos cartões
+- `images/` — imagens, logotipo e foto de perfil
+- `resourses/` — arquivos legados e documentos preservados
 
-## 🚀 Como Atualizar o Site
+## Funcionalidades
 
-Este site é hospedado via **GitHub Pages**. Para publicar novas alterações, basta seguir o fluxo de Git:
+- Navegação por seções nas páginas de especialidade.
+- Link **Indicações** direcionando à mesma página independente em todas as áreas.
+- Cartões de projetos carregados de uma planilha pública do Google Sheets (somente leitura).
+- Exibição condicionada a registros publicados e ao campo `area` (`dados`, `copywriting`, `web`).
+- Filtros na página Todos os Projetos.
+- Cartões clicáveis, links externos e layout adaptável a dispositivos móveis.
 
-1.  **Edite os arquivos** localmente.
-2.  **Commit** suas alterações:
-    ```bash
-    git add .
-    git commit -m "Descrição da atualização"
-    ```
-3.  **Push** para o repositório principal:
-    ```bash
-    git push origin main
-    ```
-    *O GitHub Pages atualizará o site automaticamente em poucos minutos.*
+## Tecnologias
 
-## ✨ Funcionalidades
-- **Navegação SPA**: Links internos com rolagem suave.
-- **Modo Responsivo**: Menu hambúrguer e layouts adaptáveis para mobile.
-- **Seção de Cases**: Destaque para projetos de Análise de Dados e Finanças.
-- **Página de Indicações**: Área dedicada para ferramentas e parceiros.
+HTML5, CSS3, JavaScript sem frameworks e Google Sheets (endpoint público de visualização).
+
+## Fluxo de trabalho e publicação
+
+- **Produção:** branch `main`, publicada pelo GitHub Pages no domínio personalizado `portfolio.rubensplima.com`.
+- **Desenvolvimento:** branch `dev/portfolio-v4`, com os arquivos da versão de testes em `preview-v4/`.
+- **Prévia independente:** repositório `rubensplima/portfolio-v4-preview`, utilizado para homologação.
+- **Backup anterior à V4:** branch `backup/pre-v4-2026-10-23`.
+
+As alterações de desenvolvimento devem ser testadas antes de serem promovidas à `main`. O repositório de prévia não sincroniza automaticamente com a branch de desenvolvimento.
+
+## Google Sheets
+
+As abas `Projetos` e `Indicações` alimentam os cartões. A visibilidade dos registros depende do campo `publicado`. Os projetos são separados pelo campo `area` e podem ser ordenados pelo campo `ordem`. A planilha precisa permanecer acessível publicamente para o carregamento no site.
+
+## Publicação da V4
+
+A V4 foi aprovada em testes no computador e no celular e enviada à branch `main` em 23/10/2026. Os arquivos legados não substituídos foram mantidos no repositório.
 
 ---
-© 2026 Rubens Lima. Desenvolvido com foco em performance e design clean.
+
+© 2026 Rubens Lima.
