@@ -1,49 +1,61 @@
-# Portfólio Profissional - Rubens Lima
+# Portfólio profissional — Rubens Lima
 
-Bem-vindo ao repositório do meu portfólio profissional. Este projeto foi desenvolvido para apresentar minha trajetória como **Analista de Dados** e **Desenvolvedor Web**, destacando projetos, competências e experiências.
+Repositório do portfólio profissional publicado em [portfolio.rubensplima.com](https://portfolio.rubensplima.com/), com foco principal em **Data Analytics** e apresentação de projetos, competências, experiência e canais de contato.
 
-🔗 **Acesse o site:** [rubensplima.github.io](https://rubensplima.github.io)
-*(Ou via domínio personalizado: [portfolio.rubensplima.com](https://portfolio.rubensplima.com))*
+> **Estado do projeto (23/10/2026):** o redesenho visual foi aprovado como protótipo. A implementação está em desenvolvimento na branch `dev/portfolio-redesign-2026`. **A branch `main` continua sendo a versão publicada.** A existência desta branch e deste documento não significa que as novas páginas ou a integração com planilhas já estejam implantadas.
 
-## 🛠️ Tecnologias Utilizadas
-- **HTML5 Semântico**: Estrutura acessível e otimizada para SEO.
-- **CSS3 Moderno**: Variáveis CSS, Flexbox, Grid Layout e Design Responsivo (Mobile-First).
-- **JavaScript (Vanilla)**: Manipulação de DOM para menu mobile e smooth scroll.
-- **Font Awesome**: Ícones vetoriais.
-- **Google Fonts**: Tipografia moderna (Outfit).
+## Diretrizes aprovadas para o redesenho
 
-## 📂 Estrutura do Projeto
-```
+- Identidade visual existente preservada: ciano `#0BB2D9`, laranja `#FFA62B`, grafite `#272727`, branco e cinza claro.
+- Logotipo original **maior**, à esquerda do cabeçalho, **sem repetir o nome** ao lado dele.
+- Foto e apresentação pessoal na área inicial, com foco na proposta de valor profissional.
+- Portfólio de dados como página principal, com projetos em cartões e histórico profissional preservado.
+- Página **Indicações** independente da home, acessada pelo menu e destinada a recomendações de livros, hospedagem, ferramentas e serviços.
+- Contato por `contato@rubensplima.com` e WhatsApp profissional indicado pelo proprietário; não usar botão flutuante.
+- Layout responsivo, editorial e discreto; evitar animações excessivas.
+
+## Arquitetura planejada
+
+| Área | Caminho previsto | Situação |
+| --- | --- | --- |
+| Data Analytics | `/` | Protótipo aprovado; implementação pendente |
+| Copywriting | `/copywriting/` | Planejada |
+| Desenvolvimento Web e Soluções Digitais | `/web/` | Planejada |
+| Indicações | `/indicacoes.html` | Página independente prevista |
+| Dashboard de arquitetura | Repositório `architecture-investor-dashboard` | Projeto independente; preservar funcionamento |
+
+Projetos devem ter documentação nos seus próprios repositórios; este portfólio funciona como vitrine com cartões e links externos.
+
+## Conteúdo atualizado por planilha — planejado, não implantado
+
+Uma planilha Google Sheets deverá funcionar como CMS leve, com abas **Projetos** e **Indicações**. Campos propostos: título, descrição, categoria, imagem, URL, publicado, destaque e ordem. Os cartões serão carregados de um feed público seguro, com validação de dados e compatibilidade CORS. **Não expor credenciais, chaves privadas nem informações não destinadas à publicação.**
+
+As recomendações com links de afiliados devem ser identificadas de maneira transparente. Até a integração estar concluída, o conteúdo poderá ser mantido em arquivos estáticos de desenvolvimento.
+
+## Estrutura atual da versão publicada
+
+```text
 /
-├── index.html        # Página Principal (Home, Sobre, Experiência, Projetos)
-├── indicacoes.html   # Página de Recomendações e Ferramentas
-├── style.css         # Folha de estilos global
-├── main.js           # Scripts de interatividade
-├── images/           # Assets (Logo, Favicon, Imagens)
-└── resourses/        # PDFs e Arquivos de projetos (DSA)
+├── index.html
+├── indicacoes.html
+├── style.css
+├── main.js
+├── images/
+└── resourses/
 ```
 
-## 🚀 Como Atualizar o Site
+Tecnologias atuais: HTML, CSS, JavaScript, Google Fonts e Font Awesome. Hospedagem via GitHub Pages.
 
-Este site é hospedado via **GitHub Pages**. Para publicar novas alterações, basta seguir o fluxo de Git:
+## Fluxo seguro de trabalho
 
-1.  **Edite os arquivos** localmente.
-2.  **Commit** suas alterações:
-    ```bash
-    git add .
-    git commit -m "Descrição da atualização"
-    ```
-3.  **Push** para o repositório principal:
-    ```bash
-    git push origin main
-    ```
-    *O GitHub Pages atualizará o site automaticamente em poucos minutos.*
+1. Desenvolver e revisar na branch `dev/portfolio-redesign-2026`, sem alterar a `main`.
+2. Validar responsividade, acessibilidade, links, contato, imagens, SEO e carregamento dos cartões.
+3. Confirmar que o dashboard de arquitetura e os projetos existentes continuam acessíveis.
+4. Integrar o Google Sheets e testar publicação/ordenação e estados vazios.
+5. Só então aprovar o merge e a publicação na `main`.
 
-## ✨ Funcionalidades
-- **Navegação SPA**: Links internos com rolagem suave.
-- **Modo Responsivo**: Menu hambúrguer e layouts adaptáveis para mobile.
-- **Seção de Cases**: Destaque para projetos de Análise de Dados e Finanças.
-- **Página de Indicações**: Área dedicada para ferramentas e parceiros.
+## Histórico
 
----
-© 2026 Rubens Lima. Desenvolvido com foco em performance e design clean.
+- **23/10/2026:** aprovada a primeira versão visual; definida separação da página Indicações, identidade do cabeçalho, contatos e estratégia de planilha; criada branch de desenvolvimento e atualizado este README.
+
+© 2026 Rubens Lima.
